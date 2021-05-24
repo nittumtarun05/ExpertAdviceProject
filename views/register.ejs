@@ -1,0 +1,36 @@
+<%- include ("./partials/header")%>
+<div class=" col d-flex justify-content-center">
+<div class="card" style="max-width: 50rem;">
+	<div class="card-body">
+
+		<div class="card-title"> <h1>Sign up</h1> </div>
+		<br>
+		
+		<p class="card-text">  <u>Using your college email address</u></p>
+		<form action="/register" method="POST">
+			<input type="email" name="username" placeholder="*********@daiict.ac.in" required pattern=".+@daiict.ac.in">
+			 <input type="password" name="password" placeholder="password"  minlength="8" required>
+			 <input type="text" name="adminCode" placeholder="Admin Code">
+			 <br>
+			 <br>
+			 <div class="text-right">
+
+                <button  class="btn btn-dark ">Sign Up</button>
+			 </div>
+			
+		
+		</form>
+
+
+	</div>
+</div>
+</div>
+
+<%- include ("./partials/footer")%>
+<style>
+	.card {
+        margin-top: 80px; /* Added */
+        float: none; /* Added */
+        margin-bottom: 10px; /* Added */
+}
+</style>

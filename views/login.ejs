@@ -1,0 +1,44 @@
+<%- include ("./partials/header")%>
+
+<div class=" col d-flex justify-content-center">
+	<div class="card" style="max-width: 50rem;">
+		<div class="card-body">
+
+			<p class="card-title">
+			<h1>Login!!</h1>
+			</p>
+			<p class="card-text">  <u>From your existing Expert Advice account</u></p>
+
+			<form action="/login" method="POST">
+				<div>
+					<input type="text" name="username" placeholder="username">
+					<input type="password" name="password" placeholder="password">
+
+
+				</div>
+				<br>
+				<br>
+
+				<div>
+					<input type="submit" class="btn btn-outline-primary" value="Login!">
+				</div>
+
+			</form>
+
+
+		</div>
+	</div>
+</div>
+
+<%- include ("./partials/footer")%>
+
+<style>
+	.card {
+		margin-top: 80px;
+		/* Added */
+		float: none;
+		/* Added */
+		margin-bottom: 10px;
+		/* Added */
+	}
+</style>

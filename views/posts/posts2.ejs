@@ -1,0 +1,103 @@
+<%- include ("../partials/header")%>
+<!-- <% if(currentUser && currentUser.isAdmin) { %>
+<h3>You're an ADMIN!!</h3>
+<% } %> -->
+<div class="container">
+<header class="jumbotron">
+	<div class="container">
+		<div class="card">
+			<div class="card-header bg-info">
+				<h1>Welcome to Expert Advice!!</h1>
+
+			</div>
+			<div class="card-body">
+
+				
+			<p>View the problems that others may have also faced but you are lucky enough to have us</p>
+			<!-- <p><a class="btn btn-primary btn-lg" href="/posts/new">ADD New Problem Statement</a> -->
+		 </p>
+		 <p>
+			 
+
+			<form class="form-inline" action="/posts" method="GET" >
+				<input type="search" name="search"  placeholder="Search"  >
+				<button class="btn btn-outline-info btn-sm" type="submit" >Search</button>
+		<!-- <input type="submit" value="Search" class="btn btn-outline-info my-2 my-sm-0"> -->			
+</form>
+
+			 
+			 
+
+
+
+			
+		 </p>
+
+
+			</div>
+			
+			
+		</div>
+
+	</div>
+</header>
+
+<div class="container">
+ <div class="row text-center" style="display:flex; flex-wrap: wrap;"> 
+	<% posts.forEach(function(post) { %>
+		<!-- <div class="col-sm-6 col-md-3 ">
+			<div class="thumbnail">
+			 <img src="<%= post.image%>" class="d-block w-100 " alt="">
+				<div class="caption">
+				<h4><%= post.name%></h4>
+				</div>
+				<p>
+					<a href="/posts/<%= post._id%>" class="btn btn-primary"> VIEW MORE</a>
+				</p>
+			</div>
+				
+			
+		</div> -->
+		
+
+
+		<!-- new code -->
+		<div class="card mb-3">
+			<div class="row">
+				<div class="col-md-4">
+					
+					<img class="img-fluid" alt="" src="<%=post.image%>">
+					
+				</div>
+				<div class="col-md-8">
+					<div class="card-body">
+						<h5 class="card-title"><%= post.name %> </h5>
+						<p class="card-text"><%= post.description %></p>
+						
+						<a class="btn btn-primary" href="/posts/<%=post._id%>">View <%=post.name%></a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<!-- new code end here -->
+		
+	
+<% }); %>
+</div>
+
+
+</div>
+<%- include ("../partials/footer")%>
+
+<style>
+
+.container {
+	margin-top:20px;
+  grid-template-columns: 100px 50px 100px;
+  grid-template-rows: 80px auto 80px; 
+  column-gap: 10px;
+  row-gap: 15px;
+}
+</style>

@@ -1,0 +1,116 @@
+<%- include("../partials/header")%>
+<div class="container">
+	<div class="row">
+		<div class="col-md-3">
+			<p class="lead">Expert Advice</p>
+			<div clas="list-group">
+				<li class="list-group-item active">Info</li>
+
+			</div>
+		</div>
+		<div class="col-md-9">
+			<div class="thumbnail">
+				<img class="img-responsive" src="<%= post.image%>">
+				<div class="caption-full">
+
+					<h4><a><%= post.name%></a></h4>
+					<p><%= post.description%></p>
+					<p><em>Submitted By <%= post.author.username%></em></p>
+					<% if(currentUser && post.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin) {%>
+					<a class="btn btn-warning" href="/posts/<%=post._id%>/edit">EDIT</a>
+					<form class="delete-form" action="/posts/<%= post._id%>?_method=DELETE" method="POST">
+						<button class="btn btn-danger">DELETE</button></form>
+					<% } %>
+
+				</div>
+			</div>
+
+
+			<!-- add new comment -->
+
+
+			<div class="container">
+				<div class="row">
+					<h1>Leave a Review to <%= post.name%></h1>
+					<div class="col-md-9">
+						<form action="/posts/<%= post._id%>/comments" method="POST" class="validated-form" novalidate>
+							<div class="form-group">
+								<label class="form-label" for="rating">Rating</label>
+								<input class="form-range" type="range" min="1" max="5" name="comment[rating]">
+
+							</div>
+							<textarea class="form-control" name="comment[text]" placeholder="text" cols="30" rows="3"
+								style="resize:none" required></textarea>
+
+
+							<div class="form-group">
+								<button class="btn btn-success">submit</button>
+							</div>
+						</form>
+						<a href="/posts">Go Back</a>
+					</div>
+
+				</div>
+			</div>
+
+
+
+            <div class="card">
+				<div class="card-body">
+					<div class="text-right">
+						<!-- <a class="btn btn-success" href="/posts/<%= post._id%>/comments/new">Add New Comment</a> -->
+					</div>
+					<% if(post.comments.length>0) {%>
+					<b><u>Posted Suggestions!!</u></b>
+					<% } %>
+					
+					<% post.comments.forEach(function(comment){%>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="card">
+								<div class="card-body">
+									<p class="card-title"><strong><%= comment.author.username%></strong></p>
+									<p class="card-text"><%= comment.text%></p>
+							        <p class="card-text"> <i>  Problem Rating: </i><%= comment.rating%></p>
+	
+							
+							<% if(currentUser && comment.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin) {%>
+	
+							<a class="btn btn-xs btn-warning" href="/posts/<%= post._id%>/comments/<%=comment._id%>/edit">
+								Edit</a>
+							<form class="delete-form"
+								action="/posts/<%= post._id%>/comments/<%=comment._id%>?_method=DELETE" method="POST">
+								<input type="submit" class="btn btn-xs btn-danger" value="Delete">
+							</form>
+							<% } %>
+								</div>
+							</div>
+							
+							
+						</div>
+					</div>
+	
+					<%})%>
+				</div>
+				
+			</div>
+			
+		</div>
+
+
+		<!-- <form action="">
+			<div class="mb-3">
+                <label class="form-label" for="rating">Rating</label>
+                <input class="form-range" type="range" min="1" max="5" name="review[rating]" id="rating">
+            </div>
+			<div class="mb-3">
+				<label class="form-label" for="body">REVIEW</label>
+				<textarea class="form-control" name="comment[text]"  placeholder="text" cols="30" rows="3"></textarea>
+			</div>
+			<button class="btn btn-success">Add New Review</button>
+		</form> -->
+	</div>
+</div>
+
+
+<%- include ("../partials/footer")%>
